@@ -6,6 +6,7 @@ const logger = require('morgan');
 const mongoose = require("mongoose");
 require("dotenv").config();
 const indexRouter = require('./routes/index');
+const categoryRouter = require('./routes/category');
 
 
 const app = express();
@@ -26,7 +27,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get("/", (req, res) => {
   res.redirect("/catalog")
 });
+
+// app.get("/check", (req, res) => {
+//   Item.find()
+//   .then((result) => {
+//     let arr = result
+//     for(let dbItem of arr) {
+//       Item.updateOne({url: dbItem.url},{$set: {url: dbItem.name.trim().replaceAll(" ", "-").toLowerCase()}}).then(() => {
+//         res.send("Good!")
+//       }).catch((err) => {
+//         console.log(err)
+//       }) 
+//     }    
+//   })
+// });
+
+
+
 app.use('/catalog', indexRouter);
+app.use('/category', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

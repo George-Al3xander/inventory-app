@@ -4,25 +4,32 @@
   <body>
     <%- include("./partials/header.ejs") %>
     <main>
-    <span><a href="/categories/<%= item.category.id %>"><%= item.category.name %></a> <h3>/</h3> <a href="/catalog/<%= item._id %>"><%= item.name %></a></h3></span>
-      <div class="container">
-          <form action="/catalog/<%= item.id%>/update" method="POST" class="container item-big">
-            <input name="name" value="<%= item.name%>" type="text">
-            <textarea name="description" id="" cols="30" rows="10"><%= item.description%></textarea>
-            <!-- Hardcoded options, must be replaced -->
-            <select name="category" id="">
-                <option value="Test 1">Test 1</option>
-                <option value="Test 2">Test 2</option>
-                <option value="Test 3">Test 3</option>
-            </select>
-            <!-- /// -->
-           <input min="0" name="price" value="<%= item.price%>" type="number">
-           <input min="0" name="stock" value="<%= item.stock%>" type="number">
-            <button>Submit</button>
-            <a href="/catalog/<%= item.id%>">Cancel</a>
-          </form>
-      </div>  
-    </main>
-    
+    <span><a href="/catalog">Catalog</a> <h3>/</h3><a href="/category/<%= item.category.id %>"><%= item.category.name %></a> <h3>/</h3> <a href="/catalog/<%= item._id %>"><%= item.name %></a></h3></span>      
+          <div class="container item-big">
+            <form action="/catalog/<%= item.id %>/update" method="POST" class="container item-big">              
+                <select class="form-category" name="category" id="">
+                  <% categories.map((cat) => {  %>     
+                    <% if(cat.id == item.category.id) { %>
+                      <option selected value="<%= cat.name %>-<%= cat.id %>-<%= item.id %>"><%= cat.name %></option>  
+                    <% } else {%>  
+                      <option  value="<%= cat.name %>-<%= cat.id %>-<%= item.id %>"><%= cat.name %></option>     
+                    <% }%>              
+                  <% }) %>
+                </select>
+                <input class="form-name" name="name" value="<%= item.name%>" type="text">
+                <!-- Hardcoded options, must be replaced -->             
+              <textarea name="description" id="" cols="30" rows="5"><%= item.description%></textarea>
+              <!-- /// -->
+             <div class="price price-update">
+               <span>$<input min="0"  step="0.01" name="price" value="<%= item.price%>" type="number"></span>
+               <span><input min="0" name="stock" value="<%= item.stock%>" type="number"> left</span>
+             </div>
+             <div class="btns">
+               <button>Submit</button>
+               <a href="/catalog/<%= item.id%>">Cancel</a>
+             </div>
+            </div>
+            </form>      
+    </main>    
   </body>
 </html>

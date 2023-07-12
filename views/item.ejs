@@ -4,25 +4,26 @@
   <body>
     <%- include("./partials/header.ejs") %>
     <main>
-    <span><a href="/categories/<%= item.category.id %>"><%= item.category.name %></a> <h3>/</h3> <h3><%= item.name%></h3></span>
-    <div class="container">
-        
+    <span><a href="/catalog">Catalog</a><h3>/</h3><a href="/category/<%= item.category.id %>"><%= item.category.name %></a><h3>/</h3><h3><%= item.name%></h3></span>
+    <div class="container">        
         <div class="container item-big">
             <h1><%= item.name%></h1>
             
             <p><%= item.description%></p>
         </div>  
 
-         <div>
-                  <h2>$<%= item.price  %>, </h2>
-                  <% if(item.stock > 0) {%>
-                    <h3><%= item.stock %> left</h3>
-                  <%} else {%>
-                    <h3>Out of stock</h3>
-                    <% }%>
-                </div>
-        
-        <a href="/catalog/<%= item._id%>/update">Update info</a>
+         <div class="price">
+          <h2>$<%= item.price  %>, </h2>
+              <% if(item.stock > 0) {%>
+                <h3><%= item.stock %> left</h3>
+              <%} else {%>
+                <h3>Out of stock</h3>
+            <% }%>
+        </div>
+        <div class="btns">
+          <a href="/catalog/<%= item._id%>/update">Update info</a>
+          <a href="/catalog/<%= item.id%>/delete">delete</a>
+        </div>
     </div>
     </main>
     

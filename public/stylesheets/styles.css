@@ -132,7 +132,7 @@ main {
   font-weight: 600;
 }
 
-.item  h2 {
+.item  h2, .price h2, .price input:first-child {
   font-weight: 500;
   font-size: var(--fs-medium);
 }
@@ -151,7 +151,7 @@ main {
    opacity: .8;
 }
 
-span {
+span:not(.price span) {
   display: flex;
   gap: .5rem;
   padding: .5rem;
@@ -165,7 +165,187 @@ span a:hover {
 
 form {
   display: flex;
+  flex-direction: column;
 }
+
+.item-big h1,  .form-name{
+  font-size: var(--fs-big);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.btns {
+  justify-content: flex-end;
+  gap: 2rem;
+  flex-wrap: wrap;
+  padding-block: 1rem;
+  display: flex;
+}
+
+.btns a, .btns button {
+  text-transform: uppercase;
+  opacity: .7;
+  font-size: var(--fs-medium);
+}
+
+.btns a:hover, .btns button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.btns a:hover:last-child {
+  color: red;
+}
+input, textarea {
+  transition: all .5s ease-in-out;
+  border-bottom: 1px solid gray
+}
+
+input:focus, textarea:focus {
+  transition: all .5s ease-in-out;
+  background-color: grey;
+  border-radius: 1rem;
+  padding: .5rem;
+}
+
+select {
+  border-bottom: 1px solid gray;
+  width: min-content;
+
+}
+
+
+textarea {  
+  white-space: pre-wrap;
+}
+
+input[type=number] {
+  text-align: center; 
+}
+
+.price h3 {
+  opacity: .6;
+}
+
+.price input {
+  max-width: 10ch;
+  margin-right: 1rem;
+}
+
+.category-prev {
+  border-radius: .3rem;
+}
+
+.category-prev h1 {
+  border-bottom: 1px solid black;
+}
+
+.category .items {
+  grid-template-columns: 1fr;
+}
+
+.category .header h1, .category-update .name  {
+  font-size: var(--fs-large);
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.category .header p {
+  margin-left: 1rem;
+}
+
+.category .header {
+  background-color: gainsboro;
+  border-radius: 1rem;
+  border: 5px solid black;
+  padding: 1rem;
+}
+.category .item {
+  opacity: .7;
+}
+.category .item:hover {
+  opacity: 1;
+}
+
+.category .btns a:not(.category-update .btns a){
+  font-size: var(--fs-default);
+}
+
+.category .header > div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns-mobile {
+  display: none;
+}
+
+
+
+@media (max-width: 34rem) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header h1 {
+    margin-bottom: 1rem;
+  }
+
+  header p {
+    display: none;
+  }
+
+  .items {    
+    grid-template-columns: 1fr;
+  }
+
+  .price {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    
+  }
+  
+  .price-update {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .price input {
+    max-width: 100%;
+  }
+
+  .item-big {
+    text-align: center;
+  }
+  
+
+  form > * {
+    margin-bottom: 2rem;
+  }
+
+  .btns {
+    justify-content: center;
+  }
+
+  .btns-desktop {
+    display: none;
+  }
+  .btns-mobile {
+    display: flex;
+  }
+}
+
 
 
 

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<%- include("./partials/head.ejs") %>
+<html>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <main>
+      <div class="container category category-update">
+        <form action="/category/<%= item.id %>/update" method="POST" class="container item-big">
+          <input name="name" class="name" value="<%= item.name%>" type="text">
+          <textarea name="description" id="" cols="30" rows="5"><%= item.description%></textarea>
+          <div class="btns">
+            <button>Submit</button>
+            <a href="/category/<%= item.id%>">Cancel</a>
+          </div>
+        </form>
+      </div>  
+    </main>
+    
+  </body>
+</html>

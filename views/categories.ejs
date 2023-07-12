@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<%- include("./partials/head.ejs") %>
+<html>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <main>
+        <span><a href="/catalog">Catalog</a><h3>/</h3> <h3> Categories</h3></span>
+      <div class="container">
+        <ul  class="items">
+          <% items.map((item) => {  %>
+            <a href="/category/<%= item._id%>">
+              <li class="item category-prev">
+                <div>                  
+                  <h1><%= item.name%></h1>
+                </div>
+                <p><%= item.description%></p>                
+              </li>
+            </a>           
+            <% }) %>
+          </ul>
+      </div>  
+    </main>
+    
+  </body>
+</html>
