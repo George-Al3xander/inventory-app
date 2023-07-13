@@ -58,10 +58,41 @@ const delete_req = (req, res) => {
     .catch((err) => console.log(err));   
 }
 
+const new_item_page = (req, res) => {
+    Category.find().then((cat_result) => {
+        console.log(cat_result)
+        res.render("itemNew" , {            
+            title: "New item",
+            categories: cat_result
+        })
+    }).catch((err) => console.log(err))
+}
+
+const new_item_page_send = (req, res) => {
+    let obj = req.body
+    obj = {
+        name: obj.name.trim(),
+        description: obj.description.trim(),
+        category: {
+            name: obj.category.split("-")[0],
+            id: obj.category.split("-")[1]
+        },
+        price: obj.price,
+        stock: obj.stock,
+        url: obj.name.trim().replaceAll(" ", "-").toLowerCase()
+    } 
+    const newItem = new Item(obj);
+    newItem.save()
+    .then(() => res.redirect("/"))
+    .catch((err) => console.log(err)); 
+}
+
 module.exports = {
     index,
     details,
     update_page,
     update_page_send,
-    delete_req
+    delete_req,
+    new_item_page,
+    new_item_page_send
 }

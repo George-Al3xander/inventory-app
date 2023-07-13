@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<%- include("./partials/head.ejs") %>
+<html>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <main>
+    <span><a href="/catalog">Catalog</a><h3>/</h3> <h3>new item</h3></span>
+    <div class="container">        
+        <form action="/catalog/new" method="POST">           
+            <select required class="form-category" name="category" id="">
+              <option selected disabled value="">Select category</option>
+                <% categories.map((cat) => {  %> 
+                    <option  value="<%= cat.name %>-<%= cat.id %>"><%= cat.name %></option>  
+                <% }) %>
+              </select>
+              <input required placeholder="Enter item's name" class="form-name" name="name" type="text">
+              <!-- Hardcoded options, must be replaced -->             
+            <textarea required placeholder="Enter item's description" name="description" id="" cols="30" rows="5"></textarea>
+            <!-- /// -->
+           <div class="price price-update">
+             <span><input required min="0"  step="0.01" placeholder="Price" name="price" type="number"></span>
+             <span><input required min="0" name="stock" placeholder="Stock" type="number"> </span>
+           </div>
+           <div class="btns">
+             <button>Submit</button>
+             <a href="/catalog">Cancel</a>
+           </div>
+          </div>
+        </form>
+    </div>
+    </main>    
+  </body>
+</html>

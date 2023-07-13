@@ -16,13 +16,13 @@
                     <% }%>              
                   <% }) %>
                 </select>
-                <input class="form-name" name="name" value="<%= item.name%>" type="text">
+                <input placeholder="Enter item's name"  class="form-name" name="name" value="<%= item.name%>" type="text">
                 <!-- Hardcoded options, must be replaced -->             
-              <textarea name="description" id="" cols="30" rows="5"><%= item.description%></textarea>
+              <textarea placeholder="Enter item's description" name="description" id="" cols="30" rows="5"><%= item.description%></textarea>
               <!-- /// -->
              <div class="price price-update">
-               <span>$<input min="0"  step="0.01" name="price" value="<%= item.price%>" type="number"></span>
-               <span><input min="0" name="stock" value="<%= item.stock%>" type="number"> left</span>
+               <input min="0"  step="0.01" name="price" placeholder="price"  value="<%= item.price%>" type="number">
+               <input min="0" name="stock" placeholder="stock"  value="<%= item.stock%>" type="number">
              </div>
              <div class="btns">
                <button>Submit</button>

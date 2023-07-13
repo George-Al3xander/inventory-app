@@ -49,38 +49,77 @@ const update_page_send = (req, res) => {
     }   
     Category.findByIdAndUpdate(id, obj)
     .then(() => {
-        Item.find(
-            { category:  {
-                id: {$eq: id}}
-            } 
-                
-            // ,
-            // {$set: {
-            //     category: {
-            //         name: obj.name.trim().toLowerCase(),
-            //         id: id
-            //     }
-            // }}
-        )
-        .then((sth) => console.log(sth))
-        .then(() => res.redirect("/")).catch((err) => console.log(err)); 
-    })      
-       
+        Item.find()
+        .then((items) => {
+            return items.filter((item) => {
+                return item.category.id == id
+            })
+        })    
+        .then((items_clean) => {
+            for(let db_item of items_clean) {
+                Item.findByIdAndUpdate(db_item._id,{$set: {
+                        category: {
+                            name: obj.name.trim().toLowerCase(),
+                        id: id
+                    }
+                }})
+                .then((sth) => console.log(sth))  
+            }            
+        })
+        .then(() => res.redirect("/"))    
+    })  
+    .catch((err) => console.log(err)); 
 }
 
 const delete_req = (req, res) => {
     const id = req.params.id; 
-    Item.findByIdAndDelete(id)
-    .then(() => res.redirect("/"))
-    .catch((err) => console.log(err));   
+    Category.findByIdAndDelete(id)
+    .then(() => {
+        Item.find()
+        .then((items) => {
+            return items.filter((item) => {
+                return item.category.id == id
+            })
+        })  
+        .then((items_clean) => {
+            for(let db_item of items_clean) {
+               Item.findByIdAndDelete(db_item._id)
+               .then((sth) => console.log(sth))  
+           } 
+        })   
+        .then(() => res.redirect("/")) 
+    })   
+    .catch((err) => console.log(err)); 
 }
+
+const new_category_page = (req, res) => {
+    res.render("categoryNew" , {            
+        title: "New category",            
+    }).catch((err) => console.log(err))
+}
+
+const new_category_page_send = (req, res) => {               
+    let obj = req.body
+    obj = {
+        name: obj.name.trim().toLowerCase(),
+        description: obj.description.trim(),        
+        url: obj.name.trim().replaceAll(" ", "-").toLowerCase()
+    }  
+    const newItem = new Category(obj);
+    newItem.save()
+    .then(() => res.redirect("/"))    
+    .catch((err) => console.log(err)); 
+}
+
 
 module.exports = {
     index,
     details,
     update_page,
     update_page_send,
-    delete_req
+    delete_req, 
+    new_category_page,
+    new_category_page_send  
 }
 
 

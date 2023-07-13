@@ -59,7 +59,7 @@ header,nav ul{
 nav ul {
   gap: 1rem;
   font-weight: 600;
-  text-transform: uppercase;
+  text-transform: uppercase;  
 }
 
 header {
@@ -67,6 +67,15 @@ header {
   background-color: black;
   color: white;
   justify-content: space-between;
+}
+
+nav li {
+  opacity: .7;
+}
+
+nav li:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 main {
@@ -139,7 +148,7 @@ main {
 
 .item  h3 {
   margin-block: auto;
-  margin-left: .3rem;
+  margin-left: .3rem; 
 }
 
 .item p {
@@ -151,10 +160,15 @@ main {
    opacity: .8;
 }
 
+span, .item  h3, select,option, ::placeholder {
+  text-transform: capitalize;
+}
+
 span:not(.price span) {
   display: flex;
   gap: .5rem;
   padding: .5rem;
+  flex-wrap: wrap;
 }
 
 span a:hover {
@@ -168,6 +182,10 @@ form {
   flex-direction: column;
 }
 
+form  > * {
+  margin-bottom: 1rem;
+}
+
 .item-big h1,  .form-name{
   font-size: var(--fs-big);
   font-weight: 600;
@@ -179,6 +197,7 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .btns {
@@ -251,7 +270,7 @@ input[type=number] {
   grid-template-columns: 1fr;
 }
 
-.category .header h1, .category-update .name  {
+.category .header h1, .category-update .name:not(input)  {
   font-size: var(--fs-large);
   font-weight: 900;
   text-transform: uppercase;
@@ -287,8 +306,6 @@ input[type=number] {
 .btns-mobile {
   display: none;
 }
-
-
 
 @media (max-width: 34rem) {
   header {
@@ -344,6 +361,12 @@ input[type=number] {
   .btns-mobile {
     display: flex;
   }
+  nav ul {
+    flex-direction: column;
+  }
+  /* nav li:first-child, nav li:nth-child(2) {
+    display: none;
+  }  */
 }
 
 

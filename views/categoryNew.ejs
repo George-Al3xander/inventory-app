@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<%- include("./partials/head.ejs") %>
+<html>
+  <body>
+    <%- include("./partials/header.ejs") %>
+    <main>
+    <span><a href="/category">Catalog</a><h3>/</h3> <h3>new category</h3></span>
+      <div class="container category category-update">
+        <form action="/category/new" method="POST" class="container item-big">
+          <input name="name" class="name" placeholder="Enter category name" type="text">
+          <textarea placeholder="Enter category description" name="description" id="" cols="30" rows="5"></textarea>
+          <div class="btns">
+            <button>Submit</button>
+            <a href="/category">Cancel</a>
+          </div>
+        </form>
+      </div>  
+    </main>    
+  </body>
+</html>
